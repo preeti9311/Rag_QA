@@ -10,6 +10,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
 from langchain.chat_models import init_chat_model
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 load_dotenv()
 
@@ -24,8 +25,9 @@ model = init_chat_model(
     timeout=120,
 )
 
-embeddings = OllamaEmbeddings(model="nomic-embed-text")
-
+embeddings = GoogleGenerativeAIEmbeddings(
+    model="gemini-embedding-001"
+)
 # Initialize session state
 if "vector_db" not in st.session_state:
     st.session_state.vector_db = None
